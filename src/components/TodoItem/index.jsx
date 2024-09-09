@@ -6,24 +6,20 @@ export default function TodoItem(props) {
     const [isEditing, setIsEditing] = useState(false);
     const [editedTask, setEditedTask] = useState(props.task);
 
-    // Função para marcar a tarefa como concluída
     function completeTask() {
         setIsCompleted(true);
     }
 
-    // Função para alternar entre o modo de edição e visualização
     function toggleEdit() {
         setIsEditing(!isEditing);
     }
 
-    // Função para atualizar o valor da tarefa enquanto edita
     function handleTaskChange(event) {
         setEditedTask(event.target.value);
     }
 
-    // Função para salvar a edição e sair do modo de edição
     function saveTask() {
-        props.onTaskUpdate(props.task, editedTask); // Atualiza o texto da tarefa
+        props.onTaskUpdate(props.task, editedTask);
         setIsEditing(false);
     }
 
@@ -33,7 +29,6 @@ export default function TodoItem(props) {
 
     return (
         <li style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}>
-            {/* Renderização condicional entre visualização e edição */}
             {isEditing ? (
                 <input
                     type="text"
@@ -50,7 +45,6 @@ export default function TodoItem(props) {
                 </button>
             )}
 
-            {/* Botão de alternância entre "Editar" e "Salvar" */}
             {isEditing ? (
                 <button onClick={saveTask} style={{ marginLeft: '10px' }}>
                     Salvar
